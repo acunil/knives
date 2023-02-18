@@ -1,6 +1,10 @@
 package com.example.knives.util;
 
+import com.example.knives.model.Knife;
+import jakarta.validation.constraints.NotBlank;
+
 import java.security.SecureRandom;
+import java.util.UUID;
 
 public class RandomUtil {
 
@@ -21,5 +25,14 @@ public class RandomUtil {
 
     public static int randomBladeLength() {
         return randomInt(2, 30);
+    }
+
+    public static Knife randomKnife(@NotBlank String name) {
+        return new Knife(UUID.randomUUID(),
+            name,
+            RandomUtil.randomBladeLength(),
+            randomEnum(Knife.KnifeType.class),
+            randomEnum(Knife.BladeMaterial.class),
+            randomEnum(Knife.HandleMaterial.class));
     }
 }

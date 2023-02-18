@@ -6,8 +6,6 @@ import com.example.knives.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import static com.example.knives.util.RandomUtil.randomEnum;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -25,14 +23,8 @@ public class KnifeService {
         return knifeDao.addKnife(knife);
     }
 
-    public int addRandomKnife() {
-        Knife randomKnife = new Knife(UUID.randomUUID(),
-            "Random Knife",
-            RandomUtil.randomBladeLength(),
-            randomEnum(Knife.KnifeType.class),
-            randomEnum(Knife.BladeMaterial.class),
-            randomEnum(Knife.HandleMaterial.class));
-        return knifeDao.addKnife(randomKnife);
+    public int addRandomKnife(String name) {
+        return knifeDao.addKnife(RandomUtil.randomKnife(name));
     }
 
     public List<Knife> selectAllKnives() {

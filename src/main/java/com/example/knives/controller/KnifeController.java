@@ -28,8 +28,8 @@ public class KnifeController {
     }
 
     @PostMapping(path = "random")
-    public void addRandomKnife() {
-        knifeService.addRandomKnife();
+    public void addRandomKnife(@RequestBody String name) {
+        knifeService.addRandomKnife(name);
     }
 
     @GetMapping
